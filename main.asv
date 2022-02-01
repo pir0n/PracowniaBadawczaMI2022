@@ -1,0 +1,25 @@
+clear;
+
+ImgVector = zeros(2500,3457)
+ImgVector_class = zeros(3457);
+load house_dataset;
+
+for k = 1:3457
+
+  number_str = num2str(k,'%04.f');
+  imgFilename = sprintf('dataset/image%s.png', number_str);
+  Img = imread(imgFilename);
+  ImgVector(:,k) = Img(:);
+end
+
+%ImgVector
+%net = newfit(ImgVector(:,20:2094),houseTargets,20);
+
+
+ net=newfit(houseInputs,houseTargets,20);
+
+  net=train(net,houseInputs,houseTargets);
+
+
+%net = newfit(ImgVector,ImgVector,[20 20]);
+%net=train(net,ImgVector,ImgVector);
