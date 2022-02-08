@@ -1,12 +1,12 @@
 clear;
 
-ImgVector = zeros(2500,3457);
+ImgVector = zeros(100,3457);
 ImgVector_class = [3457];
-for i = 1:119
-    ImgVector_class(i) = 0;
+for i = 1:206
+    ImgVector_class(i) = 0.0;
 end 
-for i = 120:3457
-    ImgVector_class(i) = 1;
+for i = 207:3457
+    ImgVector_class(i) = 1.0;
 end 
 %load house_dataset;
 
@@ -19,6 +19,17 @@ for k = 1:3457
 end
 
 %ImgVector
-net = newfit(ImgVector,ImgVector_class,[3 5]);
-nftool
+%net = newfit(ImgVector,ImgVector_class,[50 50]);
+
+%nftool
 %net=train(net,ImgVector,ImgVector_class);
+
+%net = network(50,2);
+net = newff(ImgVector,ImgVector_class,[25 25]);
+%nftool
+net.trainParam.goal = 10^(-700);
+net.trainParam.min_grad = 0.00000000001;
+net.trainParam.max_fail= 100;
+%net.trainParam.goal = 0.000001;
+net = train(net,ImgVector,ImgVector_class);
+y = sim(net,ImgVector);
