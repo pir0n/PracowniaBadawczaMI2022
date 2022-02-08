@@ -1,0 +1,10 @@
+imgFilename = 'KinFaceW-II/images/father-dau/fd_001_1.jpg';
+TestImg = imread(imgFilename);
+
+E = zeros(64,64); %my generation of dummy data
+windowL = 10;
+thresh= 50;
+for ind = 1:2:length(TestImg(:,1))-windowL+1 % set the end such that you don't index more than the length of the array E.
+    Window = TestImg(ind:ind+windowL-1, ind:ind+windowL-1,1); %pulled out section of E to be used 
+end
+

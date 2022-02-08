@@ -33,3 +33,29 @@ net.trainParam.max_fail= 100;
 %net.trainParam.goal = 0.000001;
 net = train(net,ImgVector,ImgVector_class);
 y = sim(net,ImgVector);
+
+% Wczytanie zdjęć twarzy do testowania
+
+imgFilename = 'KinFaceW-II/images/father-dau/fd_001_1.jpg';
+TestImg = imread(imgFilename);
+GrayImg = rgb2gray(TestImg);
+
+windowL = 10;
+for ind = 1:2:length(GrayImg(:,1))-windowL+1 % set the end such that you don't index more than the length of the array E.
+    Window = GrayImg(ind:ind+windowL-1, ind:ind+windowL-1,:); %pulled out section of E to be used 
+    WinArray = Window(:);
+    y_test = sim(net,WinArray);
+    
+    if y_test > 0.5
+        y_win = Window;
+    end
+end
+
+imshow(y_win)
+
+% Iteracja oknem przesuwnym po zdjęciach - zapis do tablicy wszystkich macierzy z danego zdjęcia/wszystkich zdjęć
+
+
+% Przerobienie wszysatkich macierzy wycinków na tablice
+
+% 
