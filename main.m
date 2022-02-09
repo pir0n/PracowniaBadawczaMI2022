@@ -1,19 +1,19 @@
 clear;
 
-ImgVector = zeros(256,4761);
-ImgVector_class = [4761];
+ImgVector = zeros(256,5203);
+ImgVector_class = [5203];
 
 for i = 1:3338
     ImgVector_class(i) = 1.0;
 end 
 
-for i = 3338:4761
+for i = 3338:5203
     ImgVector_class(i) = 0.0;
 end 
 
 %load house_dataset;
 
-for k = 1:4761
+for k = 1:5203
 
   number_str = num2str(k,'%04.f');
   imgFilename = sprintf('new2_dataset/image%s.png', number_str);
@@ -35,7 +35,7 @@ net = newff(ImgVector,ImgVector_class,[15 10]);
 %nftool
 %net.trainParam.goal = 10^(-700);
 %net.trainParam.min_grad = 0.00000000001;
-net.trainParam.max_fail= 30;
+net.trainParam.max_fail= 20;
 %net.trainParam.goal = 0.000001;
 net = train(net,ImgVector,ImgVector_class);
 y = sim(net,ImgVector);

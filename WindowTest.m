@@ -29,7 +29,7 @@ for kk = 1:250
     end
     
     I = mat2gray(y_win);
-    imwrite(uint8(y_win), sprintf('wrong_examples/fd_%s_1.png', number_str))
+    imwrite(uint8(y_win), sprintf('network_output/fd_%s_1.png', number_str))
     
     imgFilename = sprintf('KinFaceW-II/images/father-dau/fd_%s_2.jpg', number_str);
     
@@ -52,7 +52,7 @@ for kk = 1:250
         end
     end
     
-    imwrite(uint8(y_win), sprintf('wrong_examples/fd_%s_2.png', number_str))
+    imwrite(uint8(y_win), sprintf('network_output/fd_%s_2.png', number_str))
 end
 
 %imshow(y_win)

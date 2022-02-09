@@ -1,4 +1,4 @@
-imgFilename = 'KinFaceW-II/images/father-dau/fd_004_2.jpg';
+imgFilename = 'KinFaceW-II/images/father-dau/fd_012_2.jpg';
 TestImg = imread(imgFilename);
 GrayImg = rgb2gray(TestImg);
 
