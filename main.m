@@ -1,6 +1,6 @@
 clear;
 
-ImgVector = zeros(625,3544);
+ImgVector = zeros(256,3544);
 ImgVector_class = [3544];
 
 for i = 1:3338
@@ -16,7 +16,7 @@ end
 for k = 1:3544
 
   number_str = num2str(k,'%04.f');
-  imgFilename = sprintf('new_dataset/image%s.png', number_str);
+  imgFilename = sprintf('new2_dataset/image%s.png', number_str);
   Img = imread(imgFilename);
   ImgVector(:,k) = Img(:);
 end
@@ -31,11 +31,11 @@ end
 %net=train(net,ImgVector,ImgVector_class);
 
 %net = network(50,2);
-net = newff(ImgVector,ImgVector_class,[25 25]);
+net = newff(ImgVector,ImgVector_class,[15 10]);
 %nftool
 %net.trainParam.goal = 10^(-700);
 %net.trainParam.min_grad = 0.00000000001;
-%net.trainParam.max_fail= 100;
+net.trainParam.max_fail= 20;
 %net.trainParam.goal = 0.000001;
 net = train(net,ImgVector,ImgVector_class);
 y = sim(net,ImgVector);
@@ -48,9 +48,9 @@ GrayImg = rgb2gray(TestImg);
 
 y_max = -1000;
 
-windowL = 25;
-for ii = 1:5:length(GrayImg(:,1))-windowL+1 % set the end such that you don't index more than the length of the array E.
-    for jj = 1:5:length(GrayImg(1,:))-windowL+1
+windowL = 16;
+for ii = 1:2:length(GrayImg(:,1))-windowL+1 % set the end such that you don't index more than the length of the array E.
+    for jj = 1:2:length(GrayImg(1,:))-windowL+1
         Window = GrayImg(ii:ii+windowL-1, jj:jj+windowL-1,:); %pulled out section of E to be used 
         WinArray = Window(:);
         y_test = sim(net,double(WinArray)/255);
